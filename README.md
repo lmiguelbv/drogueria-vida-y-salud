@@ -2,7 +2,8 @@
 
 Sitio web estático (`HTML + CSS + JS`, sin proceso de compilación ni dependencias externas en ejecución) para **Droguería Vida y Salud SAS**, farmacia de barrio ubicada en **Calle 17 Sur, barrio Restrepo, Bogotá D.C., Colombia**.
 
-- **Sitio en vivo (GitHub Pages):** https://lmiguelbv.github.io/drogueria-vida-y-salud/
+- **Sitio en vivo (Netlify):** https://drogueria-vida-y-salud.netlify.app/
+- **Espejo GitHub Pages:** https://drogueria-vida-y-salud.netlify.app/
 - **Repositorio público:** https://github.com/lmiguelbv/drogueria-vida-y-salud
 
 ## Estructura del proyecto
@@ -12,7 +13,7 @@ Sitio web estático (`HTML + CSS + JS`, sin proceso de compilación ni dependenc
 - `creditos.html`: atribuciones y licencias de las fotografías temporales usadas en el sitio.
 - `data/indicadores.json`: fuente JSON con los **7 indicadores de calidad del servicio** (valor actual, meta y nota).
 - `js/indicadores.js`: módulo JavaScript que carga y renderiza `data/indicadores.json` mediante nodos DOM seguros (`textContent`) y activa el indicador de sección actual en la barra de navegación (`aria-current="location"`).
-- `qr.svg` y `qr.png`: código QR escaneable (corrección de errores `M`, margen `4`, negro `#111111` sobre blanco `#ffffff`) que apunta directamente a https://lmiguelbv.github.io/drogueria-vida-y-salud/.
+- `qr.svg` y `qr.png`: código QR escaneable (corrección de errores `M`, margen `4`, negro `#111111` sobre blanco `#ffffff`) que apunta directamente a https://drogueria-vida-y-salud.netlify.app/.
 - `share.jpg`: imagen Open Graph (`1200×630`) generada desde la pantalla inicial.
 - `favicon.png`, `assets/logo.png`, `assets/logo-mark.png`, `assets/logo.jpeg`: logotipo e isotipo adaptados desde el emblema original del establecimiento.
 - `assets/img/`: versiones WebP optimizadas con `srcset` responsivo (`500w`, `960w`, `1280w`, `1920w` y recorte móvil `780×975`).
@@ -51,7 +52,7 @@ Si la URL final cambia, regenera ambos archivos con corrección de errores `M` y
 
 ```js
 import QRCode from 'qrcode';
-const url = 'https://lmiguelbv.github.io/drogueria-vida-y-salud/';
+const url = 'https://drogueria-vida-y-salud.netlify.app/';
 await QRCode.toFile('qr.png', url, { width: 1024, margin: 4, errorCorrectionLevel: 'M', color: { dark: '#111111', light: '#ffffff' } });
 ```
 
