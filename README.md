@@ -39,7 +39,7 @@ Antes de pasar a uso comercial definitivo con el cliente, actualiza los siguient
 2. **Otras fotografías temporales (`assets/img/`):**
    - Las secciones `Nosotros` (`f113421584`), `Servicios` (`f92559627`, `f134681297`, `f10621409`, `f12038229`), `Inyectología` (`f147415189`) y `Calidad` (`f44635227`, `f129245105`) usan imágenes verificadas de Wikimedia Commons debidamente acreditadas en `creditos.html`. Pueden sustituirse por fotografías propias de la droguería conservando proporciones equivalentes.
 3. **Canales de contacto y mapa de ubicación (`index.html` y `privacidad.html`):**
-   - Reemplaza los enlaces provisionales `https://wa.me/573000000000` y `mailto:contacto@drogueriavidaysalud.example` por el número de WhatsApp real y el correo corporativo oficial.
+   - Canales configurados: WhatsApp (`https://wa.me/573022981485`) y correo (`mailto:info@drogueriasaludvida.com.co`).
    - En `#contacto`, actualiza el parámetro `query=` del enlace a Google Maps y el parámetro `q=` del `<iframe>` embebido cuando cuentes con la nomenclatura exacta del establecimiento.
 4. **Identidad y horarios de atención (`index.html`):**
    - Revisa o ajusta los textos de Misión, Visión y Valores en la sección `#nosotros`.
