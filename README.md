@@ -38,9 +38,11 @@ Antes de pasar a uso comercial definitivo con el cliente, actualiza los siguient
    - Para reemplazarla, guarda la foto real del establecimiento en `assets/foto-drogueria.jpg` (junto con sus variantes WebP apaisada `1920w` para escritorio y `780×975` para móvil) y actualiza el `<picture class="hero__bg">` en `index.html`, eliminando `data-source="stand-in"` y `data-subject="stand-in"`.
 2. **Otras fotografías temporales (`assets/img/`):**
    - Las secciones `Nosotros` (`f113421584`), `Servicios` (`f92559627`, `f134681297`, `f10621409`, `f12038229`), `Inyectología` (`f147415189`) y `Calidad` (`f44635227`, `f129245105`) usan imágenes verificadas de Wikimedia Commons debidamente acreditadas en `creditos.html`. Pueden sustituirse por fotografías propias de la droguería conservando proporciones equivalentes.
-3. **Canales de contacto (`index.html` y `privacidad.html`):**
+3. **Canales de contacto y mapa de ubicación (`index.html` y `privacidad.html`):**
    - Reemplaza los enlaces provisionales `https://wa.me/573000000000` y `mailto:contacto@drogueriavidaysalud.example` por el número de WhatsApp real y el correo corporativo oficial.
-4. **Horarios de atención (`index.html`):**
+   - En `#contacto`, actualiza el parámetro `query=` del enlace a Google Maps y el parámetro `q=` del `<iframe>` embebido cuando cuentes con la nomenclatura exacta del establecimiento.
+4. **Identidad y horarios de atención (`index.html`):**
+   - Revisa o ajusta los textos de Misión, Visión y Valores en la sección `#nosotros`.
    - El bloque `<dl class="hours" data-tz="America/Bogota" data-assumed>` contiene un horario referencial de barrio (`Lunes a sábado 8:00 a 20:00`, `Domingos y festivos 9:00 a 14:00`). Confírmalos con la droguería y retira el atributo `data-assumed` cuando queden validados.
 
 ## Regeneración de códigos QR (`qr.svg` y `qr.png`)

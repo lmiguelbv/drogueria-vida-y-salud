@@ -39,97 +39,235 @@
   --display-weight: 400;
   --display-tracking: -0.025em;
 }
-.rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); line-height: 1.28; margin-top: 2px; }
-.rows--tight > li { padding-block: 7px; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Hero encuadrado en primera pantalla; secciones interiores con ritmo compacto y uniforme */
+main > section.hero.hero--place {
+  --photo: min(500px, 53svh);
+  height: 100svh;
+  min-height: 100svh;
+}
+main > section:not(.hero),
+footer#contacto.closing {
+  height: auto;
+  min-height: 0;
+  padding-block: 64px;
+  scroll-margin-top: var(--nav);
+}
+main > section:not(.hero) > .wrap,
+footer#contacto.closing > .wrap {
+  height: auto;
+}
+footer#contacto.closing {
+  padding-bottom: calc(64px + var(--bar));
+}
+footer#contacto.closing > .wrap {
+  gap: var(--s-6);
+}
+#contacto.closing > .wrap > .footer__legal { width: 100%; }
+
+/* Logo completo debajo del título principal */
+.hero__logo-wrap { display: block; }
+.hero__logo { display: block; height: 112px; width: auto; }
+@media (min-width: 1024px) {
+  :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text { row-gap: var(--s-2); }
+  :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text > h1 { grid-column: 1 / span 6; grid-row: 1; }
+  :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text > .hero__logo-wrap { grid-column: 1 / span 6; grid-row: 2 / span 2; margin-top: var(--s-2); align-self: start; }
+  :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text > .hero__lead { grid-column: 7 / -1; grid-row: 1 / span 2; }
+  :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text > .btn-row { grid-column: 7 / -1; grid-row: 3; margin-top: var(--s-3); }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  main > section.hero.hero--place {
+    --photo: clamp(330px, 46svh, 460px);
+    --hgap: 32px;
+    --hpadb: 40px;
+  }
+  .hero__logo { height: 92px; }
+}
+
+/* Sistema coherente de iconos SVG inline (mantiene alineación exacta de márgenes de página) */
+.ic {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  vertical-align: -0.18em;
+  margin-right: 8px;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--accent);
+}
+.btn .ic {
+  color: currentColor;
+  vertical-align: -0.2em;
+  margin-right: 0;
+}
+.h-ic { display: block; }
+.h-ic__badge {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-right: 10px;
+  vertical-align: -0.18em;
+  border-radius: var(--r-sm);
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+.h-ic__badge > .ic {
+  width: 19px;
+  height: 19px;
+  margin-right: 0;
+  vertical-align: 0;
+}
+.calidad-norms .ic { width: 15px; height: 15px; }
+.t-label .ic,
+.map-link-wrap .ic,
+.visit__rows .ic { width: 15px; height: 15px; margin-right: 6px; }
+.qr-copy h3 .ic { width: 18px; height: 18px; margin-right: 8px; }
+
+/* Bloques y filas */
+.rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); line-height: 1.32; margin-top: 2px; }
+.rows--tight > li { padding-block: 8px; }
 .rows--tight > li:first-child { padding-top: 0; }
+.split-col { gap: var(--s-4); }
 .nav__link[aria-current="location"] { color: var(--action); }
 .nav__link[aria-current="location"]::before { transform: scaleX(1); }
+.hero__text > p.hero__lead { color: var(--ink); }
 .story-media { margin: 0; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 10 / 9; }
 .story-media > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
 .servicios-mosaic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); align-content: start; }
 .servicios-shot { margin: 0; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4 / 3; }
 .servicios-shot:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
 .servicios-shot > img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: auto; aspect-ratio: 10 / 9; }
+.develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: auto; aspect-ratio: 4 / 3; }
 .develop > img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.notice-inline { padding: 0; font-size: var(--t-body); font-weight: 500; color: var(--accent); line-height: 1.45; }
-.inyect-note { margin: 0; font-size: var(--t-body); color: var(--ink); line-height: 1.5; }
+.notice-inline { margin: 0; padding: 0; font-size: var(--t-body); font-weight: 500; color: var(--accent); line-height: 1.45; }
+.inyect-note, .calidad-norms { margin: 0; font-size: var(--t-small); color: var(--ink); line-height: 1.5; }
 .calidad-photos { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gutter); align-content: start; }
-.calidad-shot { margin: 0; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 16 / 7; }
+.calidad-shot { margin: 0; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 16 / 8; }
 .calidad-shot:first-child { aspect-ratio: 3 / 2; }
 .calidad-shot > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; }
-.calidad-norms { font-size: var(--t-small); color: var(--ink); line-height: 1.45; }
-.qr-panel { display: grid; gap: var(--s-3); align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5); }
-.qr-panel h3 { font-family: var(--font-text); font-weight: 500; font-size: var(--t-card); line-height: 1.3; margin: 0; }
-.qr-panel p { margin: 0; font-size: var(--t-small); color: var(--ink); max-width: 42ch; }
-.qr-frame { display: inline-flex; width: fit-content; padding: var(--s-3); background: #ffffff; border: 1px solid var(--line); }
-.qr-frame img { display: block; width: 180px; height: 180px; }
+
+/* Contacto: dirección + Google Maps embebido + QR dentro de una sola tarjeta equilibrada */
 .hours { display: grid; gap: var(--s-3); margin: 0; }
 .hours > div { display: grid; gap: 2px; font-size: var(--t-small); }
 .hours dt { color: var(--muted); }
-.hours dd { margin: 0; font-weight: 500; font-variant-numeric: tabular-nums; }
-.hero__text > p.hero__lead { color: var(--ink); }
-#contacto .visit__cols { margin-top: var(--s-2); }
-#contacto .btn-row { margin-top: var(--s-2); }
-#contacto.closing > .wrap > .footer__legal { width: 100%; }
+.hours dd { margin: 0; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.map-link-wrap { margin: var(--s-2) 0 0; font-size: var(--t-small); }
+:root:not([data-motion="off"]) .map-link-wrap > a.link {
+  background-image: none;
+  padding-bottom: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 4px;
+}
+:root:not([data-motion="off"]) .map-link-wrap > a.link:is(:hover, :focus-visible) {
+  background-image: none;
+  text-decoration-color: currentColor;
+}
+#contacto .visit { gap: var(--s-4); align-content: start; }
+#contacto .visit__cols { margin-top: 0; }
+#contacto .btn-row { margin-top: var(--s-1); }
+.qr-panel {
+  display: grid;
+  gap: var(--s-4);
+  align-content: start;
+  align-self: start;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-4);
+}
+.map-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 210px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.map-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.qr-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-4);
+}
+.qr-copy { display: grid; gap: var(--s-1); align-content: start; }
+.qr-panel h3 { font-family: var(--font-text); font-weight: 500; font-size: var(--t-card); line-height: 1.3; margin: 0; }
+.qr-panel p { margin: 0; font-size: var(--t-small); color: var(--ink); max-width: 34ch; }
+.qr-frame { display: inline-flex; width: fit-content; padding: var(--s-2); background: #ffffff; border: 1px solid var(--line); }
+.qr-frame img { display: block; width: 108px; height: 108px; }
+
 @media (min-width: 640px) {
   #contacto .btn-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-5); align-items: center; }
   #contacto .btn-row > .btn--primary { justify-self: start; }
   #contacto .btn-row > .btn--secondary { justify-self: start; padding-inline: 0; border-color: transparent; background: none; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--line-strong); }
 }
-@media (min-width: 1024px) and (max-width: 1219px) {
+@media (min-width: 1024px) and (max-width: 1279px) {
   .nav__bar { gap: 10px; }
   .nav__logo { font-size: 16px; gap: 6px; }
   .nav__logo img { height: 20px; }
   .nav__links { gap: 0; }
   .nav__link { font-size: 14px; padding: 0 5px; }
   .nav__link::before, .nav__link[aria-current="page"]::after { left: 5px; right: 5px; }
-  .nav__actions .btn { padding-inline: 12px; }
+  .nav__actions .btn { padding-inline: 10px; font-size: 14px; }
+  .hero--place .btn-row > .btn--secondary { padding-inline: 0; }
   #contacto .btn-row { display: flex; flex-wrap: wrap; row-gap: var(--s-2); }
 }
 @media (max-width: 1023px) {
   .nav__logo { font-size: 18px; }
-  .story-media { aspect-ratio: 16 / 9; }
+  .hero__logo { height: 80px; }
+  .story-media { aspect-ratio: 4 / 3; }
   .servicios-mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .servicios-shot:first-child { grid-column: auto; aspect-ratio: 16 / 10; }
-  .servicios-shot { aspect-ratio: 16 / 10; }
-  .develop { aspect-ratio: 16 / 9; }
+  .servicios-shot:first-child { grid-column: auto; aspect-ratio: 4 / 3; }
+  .servicios-shot { aspect-ratio: 4 / 3; }
+  .develop { aspect-ratio: 16 / 10; }
   .calidad-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .calidad-shot, .calidad-shot:first-child { aspect-ratio: 4 / 3; }
-  .qr-panel { padding: var(--s-4); gap: var(--s-2); }
-  .qr-frame img { width: 132px; height: 132px; }
-  #contacto .visit { gap: var(--s-3); }
+  .calidad-shot, .calidad-shot:first-child { aspect-ratio: 1 / 1; }
   .footer__legal a { display: inline-flex; align-items: center; min-height: 44px; }
 }
 @media (max-width: 639px) {
-  .rows--tight > li { padding-block: 4px; }
-  .rows .rows__name small { line-height: 1.2; }
-  #nosotros .split-col, #servicios .split-col, #inyectologia .split-col, #calidad .split-col { gap: var(--s-2); }
-  .story-media { aspect-ratio: 2 / 1; }
-  #servicios .grid { row-gap: var(--s-3); }
-  #servicios .split-col > p { line-height: 1.35; }
+  main > section.hero.hero--place {
+    --photo: 56vw;
+    height: auto;
+    min-height: 100svh;
+    padding-top: calc(var(--nav) + var(--photo) + var(--hgap));
+    padding-bottom: var(--hpadb);
+  }
+  main > section.hero.hero--place > picture.hero__bg {
+    top: var(--nav);
+    height: var(--photo);
+  }
+  main > section.hero.hero--place .hero__text { gap: var(--s-3); }
+  .hero__logo { height: 54px; }
+  main > section:not(.hero),
+  footer#contacto.closing {
+    padding-block: 48px;
+  }
+  footer#contacto.closing {
+    padding-bottom: calc(48px + var(--bar));
+  }
+  .h-ic__badge { width: 30px; height: 30px; margin-right: 8px; }
+  .h-ic__badge > .ic { width: 16px; height: 16px; }
+  .rows--tight > li { padding-block: 6px; }
+  .story-media { aspect-ratio: 4 / 3; }
   .servicios-mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-2); }
-  .servicios-shot, .servicios-shot:first-child { aspect-ratio: 16 / 9; }
-  #inyectologia .grid { row-gap: var(--s-3); }
-  .develop { aspect-ratio: 2 / 1; max-height: none; }
-  .inyect-note { font-size: var(--t-small); }
-  #calidad .grid { row-gap: var(--s-2); }
-  #calidad .rows--tight > li { padding-block: 3px; line-height: 1.25; }
-  .calidad-indicadores .rows__name small { display: inline; margin-left: 6px; margin-top: 0; }
-  .calidad-shot, .calidad-shot:first-child { aspect-ratio: 4 / 3; }
-  #calidad .split-col > .calidad-norms { line-height: 1.3; }
-  #contacto.closing > .wrap { row-gap: var(--s-2); }
-  #contacto .grid { row-gap: var(--s-3); }
-  #contacto .visit__col > .t-label { margin-bottom: 4px; }
-  #contacto .hours { gap: var(--s-2); }
-  .qr-panel { padding: var(--s-2) var(--s-3); gap: 6px; }
-  .qr-copy { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px var(--s-2); }
-  #contacto .qr-frame { padding: var(--s-2); }
-  #contacto .qr-frame img { width: 84px; height: 84px; }
-  #contacto .visit { gap: var(--s-2); }
-  #contacto .visit__address { font-size: var(--t-body); line-height: 1.35; }
-  #contacto .visit__cols { margin-top: 0; }
-  #contacto .btn-row { gap: var(--s-2); margin-top: 0; }
+  .servicios-shot, .servicios-shot:first-child { aspect-ratio: 4 / 3; }
+  .develop { aspect-ratio: 4 / 3; max-height: none; }
+  .calidad-photos { grid-template-columns: minmax(0, 1fr); }
+  .calidad-shot:first-child { aspect-ratio: 4 / 3; }
+  .calidad-shot { aspect-ratio: 16 / 9; }
+  .map-frame { min-height: 190px; }
+  .qr-panel { padding: var(--s-3); gap: var(--s-3); }
+  .qr-row { grid-template-columns: minmax(0, 1fr); gap: var(--s-2); }
+  #contacto .qr-frame img { width: 96px; height: 96px; }
   #contacto .visit__rows { display: none; }
   .footer__legal { gap: 4px var(--s-4); padding-top: var(--s-2); }
 }
@@ -141,6 +279,36 @@
 <link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
 </head>
 <body>
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="ic-shield-cross" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M9 12h6"/><path d="M12 9v6"/></symbol>
+    <symbol id="ic-capsule" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></symbol>
+    <symbol id="ic-syringe" viewBox="0 0 24 24"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></symbol>
+    <symbol id="ic-badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="ic-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="ic-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="ic-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="ic-building" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></symbol>
+    <symbol id="ic-activity" viewBox="0 0 24 24"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></symbol>
+    <symbol id="ic-message-circle" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+    <symbol id="ic-file-text" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+    <symbol id="ic-clipboard-check" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></symbol>
+    <symbol id="ic-droplets" viewBox="0 0 24 24"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05Z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/></symbol>
+    <symbol id="ic-shield-alert" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
+    <symbol id="ic-scale" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+    <symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="ic-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></symbol>
+    <symbol id="ic-timer" viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></symbol>
+    <symbol id="ic-thermometer" viewBox="0 0 24 24"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></symbol>
+    <symbol id="ic-calendar-check" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></symbol>
+    <symbol id="ic-whatsapp" viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9z"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></symbol>
+    <symbol id="ic-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="ic-qr" viewBox="0 0 24 24"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></symbol>
+    <symbol id="ic-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+  </defs>
+</svg>
+
 <header class="nav">
   <div class="wrap nav__bar">
     <a class="skip-link" href="#top">Saltar al contenido</a>
@@ -153,7 +321,7 @@
       <div class="nav__item"><a class="nav__link" href="#contacto">Contacto</a></div>
     </nav>
     <div class="nav__actions">
-      <a class="btn btn--primary" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="btn btn--primary" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-whatsapp"></use></svg>Escribir por WhatsApp<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menú"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
   </div>
@@ -161,14 +329,17 @@
 
 <main id="top">
   <section class="hero hero--place" data-enter aria-labelledby="hero-h">
-    <picture class="hero__bg" data-phone-fill><source media="(max-width: 639px)" srcset="assets/img/photo-f79966238-780x975.webp 780w" sizes="100vw"><img src="assets/img/photo-f79966238.webp" srcset="assets/img/photo-f79966238-500.webp 500w, assets/img/photo-f79966238-960.webp 960w, assets/img/photo-f79966238-1280.webp 1280w, assets/img/photo-f79966238.webp 1920w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 160vw, 100vw" width="1920" height="1135" alt="Toma de presión arterial y atención clínica en escritorio farmacéutico" style="--ly-pos: 50% 42%" fetchpriority="high" decoding="async" data-source="stand-in" data-subject="stand-in"></picture>
+    <picture class="hero__bg"><source media="(max-width: 639px)" srcset="assets/img/photo-f79966238-780x975.webp 780w" sizes="100vw"><img src="assets/img/photo-f79966238.webp" srcset="assets/img/photo-f79966238-500.webp 500w, assets/img/photo-f79966238-960.webp 960w, assets/img/photo-f79966238-1280.webp 1280w, assets/img/photo-f79966238.webp 1920w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 160vw, 100vw" width="1920" height="1135" alt="Toma de presión arterial y atención clínica en escritorio farmacéutico" style="--ly-pos: 50% 42%" fetchpriority="high" decoding="async" data-source="stand-in" data-subject="stand-in"></picture>
     <div class="wrap">
       <div class="hero-text">
         <div class="hero__text">
           <h1 id="hero-h">Droguería Vida y Salud SAS</h1>
-          <p class="hero__lead">Farmacia de barrio en Calle 17 Sur, barrio Restrepo, Bogotá D.C. Dispensación responsable de medicamentos, toma de presión arterial, orientación farmacéutica e inyectología con fórmula médica.</p>
+          <div class="hero__logo-wrap">
+            <img class="hero__logo" src="assets/logo.png" srcset="assets/logo-160.png 160w, assets/logo-280.png 280w, assets/logo.png 672w" sizes="(max-width: 639px) 69px, (max-width: 1023px) 102px, 142px" alt="Logotipo de Droguería Vida y Salud — Farmacia e Inyectología" width="672" height="529" decoding="async">
+          </div>
+          <p class="hero__lead">Tu salud, nuestra prioridad. Farmacia en Calle 17 Sur, barrio Restrepo, Bogotá D.C. Dispensación responsable de medicamentos, presión arterial, orientación farmacéutica e inyectología con fórmula.</p>
           <div class="btn-row">
-            <a class="btn btn--primary" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+            <a class="btn btn--primary" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-whatsapp"></use></svg>Escribir por WhatsApp<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
             <a class="btn btn--secondary" href="#servicios">Ver servicios</a>
           </div>
         </div>
@@ -176,16 +347,18 @@
     </div>
   </section>
 
-  <section id="nosotros" aria-labelledby="nosotros-h" style="--h: 1">
+  <section id="nosotros" class="ground-surface" aria-labelledby="nosotros-h">
     <div class="wrap">
       <div class="grid">
         <div class="span-6 split-col">
-          <h2 id="nosotros-h">Nosotros en esta farmacia de barrio</h2>
-          <p>Droguería Vida y Salud SAS atiende a las familias del barrio Restrepo en Bogotá D.C. con dispensación ordenada en mostrador, verificando presentación, dosis y fecha de vencimiento vigente.</p>
-          <p>Trabajamos bajo buenas prácticas de almacenamiento y distribución en Colombia, sin venta en línea de medicamentos con fórmula médica ni sustitución de la consulta profesional.</p>
+          <h2 id="nosotros-h" class="h-ic"><span class="h-ic__badge" aria-hidden="true"><svg class="ic"><use href="#ic-shield-cross"></use></svg></span>Nosotros en esta farmacia de barrio</h2>
+          <p>Droguería Vida y Salud SAS atiende en el barrio Restrepo de Bogotá D.C. bajo prácticas sanitarias vigentes, sin venta en línea de medicamentos con fórmula médica ni sustitución de la consulta clínica.</p>
           <ul class="rows rows--tight">
-            <li><span class="rows__name">Ubicación presencial</span><span class="rows__value">Calle 17 Sur, Restrepo</span></li>
-            <li><span class="rows__name">Ciudad</span><span class="rows__value">Bogotá D.C.</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-target"></use></svg>Misión<small>Dispensar medicamentos y dispositivos con verificación en mostrador, trato cercano y orientación clara.</small></span><span class="rows__value">Mostrador</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-eye"></use></svg>Visión<small>Ser referente en el Restrepo por la trazabilidad sanitaria, el orden ambiental y la atención oportuna.</small></span><span class="rows__value">Restrepo</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-heart"></use></svg>Valores<small>Rigor sanitario, honestidad al orientar, confidencialidad y respeto en cada atención.</small></span><span class="rows__value">Ética</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-map-pin"></use></svg>Ubicación presencial</span><span class="rows__value">Calle 17 Sur, Restrepo</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-building"></use></svg>Ciudad</span><span class="rows__value">Bogotá D.C.</span></li>
           </ul>
         </div>
         <div class="span-6 start-7">
@@ -197,17 +370,17 @@
     </div>
   </section>
 
-  <section id="servicios" class="ground-surface" aria-labelledby="servicios-h" style="--h: 1">
+  <section id="servicios" aria-labelledby="servicios-h">
     <div class="wrap">
       <div class="grid">
         <div class="span-6 split-col">
-          <h2 id="servicios-h">Servicios de farmacia y medicamentos</h2>
+          <h2 id="servicios-h" class="h-ic"><span class="h-ic__badge" aria-hidden="true"><svg class="ic"><use href="#ic-capsule"></use></svg></span>Servicios de farmacia y medicamentos</h2>
           <p>Atención presencial en punto de venta orientada al uso seguro de tratamientos y al seguimiento preventivo básico.</p>
           <ul class="rows rows--tight">
-            <li><span class="rows__name">Dispensación de medicamentos<small>Revisión de fórmula en mostrador</small></span><span class="rows__value">Mostrador</span></li>
-            <li><span class="rows__name">Toma de presión arterial<small>Equipo calibrado y registro escrito</small></span><span class="rows__value">Calibrado</span></li>
-            <li><span class="rows__name">Inyectología<small>Cabina con material estéril desechable</small></span><span class="rows__value">Con fórmula</span></li>
-            <li><span class="rows__name">Orientación farmacéutica<small>Uso seguro, horarios e interacciones</small></span><span class="rows__value">Presencial</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-capsule"></use></svg>Dispensación de medicamentos<small>Revisión de fórmula en mostrador y fecha vigente</small></span><span class="rows__value">Mostrador</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-activity"></use></svg>Toma de presión arterial<small>Equipo calibrado y registro escrito para el usuario</small></span><span class="rows__value">Calibrado</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-syringe"></use></svg>Inyectología<small>Cabina independiente con material estéril desechable</small></span><span class="rows__value">Con fórmula</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-message-circle"></use></svg>Orientación farmacéutica<small>Uso seguro, horarios, almacenamiento e interacciones</small></span><span class="rows__value">Presencial</span></li>
           </ul>
         </div>
         <div class="span-6 start-7 servicios-mosaic">
@@ -215,32 +388,32 @@
             <img src="assets/img/photo-f92559627.webp" srcset="assets/img/photo-f92559627-500.webp 500w, assets/img/photo-f92559627-960.webp 960w, assets/img/photo-f92559627.webp 1280w" sizes="(max-width: 1023px) 75vw, 55vw" width="1280" height="853" alt="Cápsulas y tabletas farmacéuticas blancas y verdes sobre superficie clara" loading="lazy" decoding="async" data-source="stand-in" data-subject="stand-in">
           </figure>
           <figure class="servicios-shot">
-            <img src="assets/img/photo-f134681297.webp" srcset="assets/img/photo-f134681297-500.webp 500w, assets/img/photo-f134681297-960.webp 960w, assets/img/photo-f134681297.webp 1280w" sizes="(max-width: 1023px) 55vw, 35vw" width="1280" height="874" alt="Estetoscopio clínico limpio sobre superficie neutra" loading="lazy" decoding="async" data-source="stand-in" data-subject="stand-in">
+            <img src="assets/img/photo-f134681297.webp" srcset="assets/img/photo-f134681297-500.webp 500w, assets/img/photo-f134681297-960.webp 960w, assets/img/photo-f134681297.webp 1280w" sizes="(max-width: 639px) 45vw, (max-width: 1023px) 44vw, 15vw" width="1280" height="874" alt="Estetoscopio clínico limpio sobre superficie neutra" loading="lazy" decoding="async" data-source="stand-in" data-subject="stand-in">
           </figure>
           <figure class="servicios-shot">
-            <img src="assets/img/photo-f10621409.webp" srcset="assets/img/photo-f10621409-500.webp 500w, assets/img/photo-f10621409-960.webp 960w, assets/img/photo-f10621409.webp 1280w" sizes="(max-width: 1023px) 55vw, 35vw" width="1280" height="960" alt="Jeringas desechables estériles con capuchón protector en fila" loading="lazy" decoding="async" data-source="stand-in" data-subject="stand-in">
+            <img src="assets/img/photo-f10621409.webp" srcset="assets/img/photo-f10621409-500.webp 500w, assets/img/photo-f10621409-960.webp 960w, assets/img/photo-f10621409.webp 1280w" sizes="(max-width: 639px) 45vw, (max-width: 1023px) 44vw, 15vw" width="1280" height="960" alt="Jeringas desechables estériles con capuchón protector en fila" loading="lazy" decoding="async" data-source="stand-in" data-subject="stand-in">
           </figure>
           <figure class="servicios-shot">
-            <img src="assets/img/photo-f12038229.webp" srcset="assets/img/photo-f12038229-500.webp 500w, assets/img/photo-f12038229-960.webp 960w, assets/img/photo-f12038229.webp 1280w" sizes="(max-width: 1023px) 55vw, 35vw" width="1280" height="1103" alt="Mortero de porcelana farmacéutica limpio sobre madera clara" loading="lazy" decoding="async" data-source="stand-in" data-subject="stand-in">
+            <img src="assets/img/photo-f12038229.webp" srcset="assets/img/photo-f12038229-500.webp 500w, assets/img/photo-f12038229-960.webp 960w, assets/img/photo-f12038229.webp 1280w" sizes="(max-width: 639px) 45vw, (max-width: 1023px) 44vw, 15vw" width="1280" height="1103" alt="Mortero de porcelana farmacéutica limpio sobre madera clara" loading="lazy" decoding="async" data-source="stand-in" data-subject="stand-in">
           </figure>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="inyectologia" aria-labelledby="inyectologia-h" style="--h: 1">
+  <section id="inyectologia" class="ground-surface" aria-labelledby="inyectologia-h">
     <div class="wrap">
       <div class="grid">
         <div class="span-6 split-col">
-          <h2 id="inyectologia-h">Inyectología con protocolo de bioseguridad</h2>
-          <p class="notice-inline"><strong>La aplicación de inyectables requiere fórmula médica.</strong></p>
+          <h2 id="inyectologia-h" class="h-ic"><span class="h-ic__badge" aria-hidden="true"><svg class="ic"><use href="#ic-syringe"></use></svg></span>Inyectología con protocolo de bioseguridad</h2>
+          <p class="notice-inline"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-file-text"></use></svg><strong>La aplicación de inyectables requiere fórmula médica.</strong></p>
           <ul class="rows rows--tight">
-            <li><span class="rows__name">1. Validación previa<small>Fórmula médica vigente, identidad y producto</small></span><span class="rows__value">Previa</span></li>
-            <li><span class="rows__name">2. Higiene y antisepsia<small>Lavado de manos, guantes estériles y asepsia cutánea</small></span><span class="rows__value">Asepsia</span></li>
-            <li><span class="rows__name">3. Material desechable<small>Jeringa y aguja selladas de un solo uso</small></span><span class="rows__value">Único uso</span></li>
-            <li><span class="rows__name">4. Guardián rojo<small>Disposición inmediata en ruta biosanitaria</small></span><span class="rows__value">Residuos</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-clipboard-check"></use></svg>1. Validación previa<small>Fórmula médica vigente, identidad y producto</small></span><span class="rows__value">Previa</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-droplets"></use></svg>2. Higiene y antisepsia<small>Lavado de manos, guantes estériles y asepsia cutánea</small></span><span class="rows__value">Asepsia</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-syringe"></use></svg>3. Material desechable<small>Jeringa y aguja selladas de un solo uso</small></span><span class="rows__value">Único uso</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-shield-alert"></use></svg>4. Guardián rojo<small>Disposición inmediata en ruta biosanitaria</small></span><span class="rows__value">Residuos</span></li>
           </ul>
-          <p class="inyect-note">Atención en cabina independiente con bitácora interna (Decreto 780 de 2016).</p>
+          <p class="inyect-note"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-scale"></use></svg>Atención en cabina independiente con bitácora interna bajo el Decreto 780 de 2016, Decreto 2200 de 2005, Decreto 351 de 2014 y Resolución 1164 de 2002.</p>
         </div>
         <div class="span-6 start-7">
           <figure class="develop" data-moment="picture-develops" data-look="film">
@@ -251,21 +424,21 @@
     </div>
   </section>
 
-  <section id="calidad" aria-labelledby="calidad-h" style="--h: 1">
+  <section id="calidad" aria-labelledby="calidad-h">
     <div class="wrap">
       <div class="grid">
         <div class="span-6 split-col calidad-indicadores">
-          <h2 id="calidad-h">Calidad del servicio: 7 indicadores</h2>
+          <h2 id="calidad-h" class="h-ic"><span class="h-ic__badge" aria-hidden="true"><svg class="ic"><use href="#ic-badge-check"></use></svg></span>Calidad del servicio: 7 indicadores</h2>
           <ul class="rows rows--tight" id="indicadores-list">
-            <li><span class="rows__name">Oportunidad en la dispensación<small>Meta: ≥ 95&nbsp;%</small></span><span class="rows__value">97&nbsp;%</span></li>
-            <li><span class="rows__name">Satisfacción del usuario<small>Meta: ≥ 90&nbsp;%</small></span><span class="rows__value">94&nbsp;%</span></li>
-            <li><span class="rows__name">Tiempo promedio de atención en mostrador<small>Meta: ≤ 10&nbsp;min</small></span><span class="rows__value">7&nbsp;min</span></li>
-            <li><span class="rows__name">Sospechas de eventos adversos reportadas a farmacovigilancia (INVIMA)<small>Meta: 100&nbsp;%</small></span><span class="rows__value">100&nbsp;%</span></li>
-            <li><span class="rows__name">Cumplimiento del protocolo de bioseguridad en inyectología<small>Meta: 100&nbsp;%</small></span><span class="rows__value">98&nbsp;%</span></li>
-            <li><span class="rows__name">Registros diarios de temperatura y humedad completos<small>Meta: 100&nbsp;%</small></span><span class="rows__value">100&nbsp;%</span></li>
-            <li><span class="rows__name">Medicamentos vencidos detectados en estantería<small>Meta: 0</small></span><span class="rows__value">0</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-clipboard-check"></use></svg>Oportunidad en la dispensación<small>Meta: ≥ 95&nbsp;%</small></span><span class="rows__value">97&nbsp;%</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-smile"></use></svg>Satisfacción del usuario<small>Meta: ≥ 90&nbsp;%</small></span><span class="rows__value">94&nbsp;%</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-timer"></use></svg>Tiempo promedio de atención en mostrador<small>Meta: ≤ 10&nbsp;min</small></span><span class="rows__value">7&nbsp;min</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-shield-alert"></use></svg>Sospechas de eventos adversos reportadas a farmacovigilancia (INVIMA)<small>Meta: 100&nbsp;%</small></span><span class="rows__value">100&nbsp;%</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-syringe"></use></svg>Cumplimiento del protocolo de bioseguridad en inyectología<small>Meta: 100&nbsp;%</small></span><span class="rows__value">98&nbsp;%</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-thermometer"></use></svg>Registros diarios de temperatura y humedad completos<small>Meta: 100&nbsp;%</small></span><span class="rows__value">100&nbsp;%</span></li>
+            <li><span class="rows__name"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-calendar-check"></use></svg>Medicamentos vencidos detectados en estantería<small>Meta: 0</small></span><span class="rows__value">0</span></li>
           </ul>
-          <p class="calidad-norms">Decreto 780 de 2016 · Resolución 1403 de 2007 · INVIMA · <a class="link" href="privacidad.html">Ley 1581 de 2012</a></p>
+          <p class="calidad-norms"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-scale"></use></svg>Ley 1751 de 2015 · Decreto 780 de 2016 · Resolución 1403 de 2007 · Vigilancia INVIMA y Secretaría Distrital de Salud · <a class="link" href="privacidad.html">Ley 1581 de 2012</a></p>
         </div>
         <div class="span-6 start-7">
           <div class="calidad-photos">
@@ -282,20 +455,23 @@
   </section>
 </main>
 
-<footer id="contacto" class="closing" aria-labelledby="contacto-h" style="--h: 1">
+<footer id="contacto" class="closing ground-surface" aria-labelledby="contacto-h">
   <div class="wrap">
     <div class="grid">
       <div class="span-6 visit">
         <div class="visit__head">
-          <h2 id="contacto-h">Contacto en el barrio Restrepo</h2>
+          <h2 id="contacto-h" class="h-ic"><span class="h-ic__badge" aria-hidden="true"><svg class="ic"><use href="#ic-map-pin"></use></svg></span>Contacto en el barrio Restrepo</h2>
         </div>
         <div class="visit__cols">
           <div class="visit__col">
-            <p class="t-label">Dirección</p>
+            <p class="t-label"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-map-pin"></use></svg>Dirección</p>
             <address class="visit__address">Calle 17 Sur, barrio Restrepo<br>Bogotá D.C., Colombia</address>
+            <p class="map-link-wrap">
+              <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+17+Sur%2C+barrio+Restrepo%2C+Bogot%C3%A1%2C+Colombia" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-map-pin"></use></svg>Abrir en Google Maps</a>
+            </p>
           </div>
           <div class="visit__col">
-            <p class="t-label">Horario</p>
+            <p class="t-label"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-clock"></use></svg>Horario</p>
             <dl class="hours" data-tz="America/Bogota" data-assumed>
               <div><dt data-days="mon,tue,wed,thu,fri,sat">Lunes a sábado</dt><dd>8:00 a 20:00</dd></div>
               <div><dt data-days="sun">Domingos y festivos</dt><dd>9:00 a 14:00</dd></div>
@@ -303,21 +479,32 @@
           </div>
         </div>
         <ul class="visit__rows">
-          <li><span>Inyectología</span><span>Fórmula médica obligatoria</span></li>
-          <li><span>Canal digital</span><span>Informativo, sin venta en línea</span></li>
+          <li><span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-file-text"></use></svg>Inyectología</span><span>Fórmula médica obligatoria</span></li>
+          <li><span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-info"></use></svg>Canal digital</span><span>Informativo, sin venta en línea</span></li>
         </ul>
         <div class="btn-row">
-          <a class="btn btn--primary" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
-          <a class="btn btn--secondary" href="mailto:contacto@drogueriavidaysalud.example">Escribir por correo</a>
+          <a class="btn btn--primary" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-whatsapp"></use></svg>Escribir por WhatsApp<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+          <a class="btn btn--secondary" href="mailto:contacto@drogueriavidaysalud.example"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-mail"></use></svg>Escribir por correo</a>
         </div>
       </div>
       <div class="span-6 start-7 qr-panel">
-        <div class="qr-copy">
-          <h3>Acceso directo en celular</h3>
-          <p>Escanea el QR para abrir el sitio en tu teléfono.</p>
+        <div class="map-frame">
+          <iframe
+            src="https://maps.google.com/maps?q=Calle%2017%20Sur%2C%20barrio%20Restrepo%2C%20Bogot%C3%A1%2C%20Colombia&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+            title="Mapa referencial en Google Maps de Calle 17 Sur, barrio Restrepo, Bogotá D.C."
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
         </div>
-        <div class="qr-frame">
-          <img src="qr.svg" alt="Código QR hacia el sitio web de Droguería Vida y Salud SAS" width="180" height="180" loading="lazy" decoding="async">
+        <div class="qr-row">
+          <div class="qr-copy">
+            <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-qr"></use></svg>Acceso directo en celular</h3>
+            <p>Escanea el QR para abrir el sitio en tu teléfono.</p>
+          </div>
+          <div class="qr-frame">
+            <img src="qr.svg" alt="Código QR hacia el sitio web de Droguería Vida y Salud SAS" width="108" height="108" loading="lazy" decoding="async">
+          </div>
         </div>
       </div>
     </div>
@@ -330,7 +517,7 @@
 </footer>
 
 <nav class="actionbar" aria-label="Acción rápida">
-  <a class="btn btn--primary" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+  <a class="btn btn--primary" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-whatsapp"></use></svg>Escribir por WhatsApp<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
 </nav>
 
 <script type="module" src="assets/system.js"></script>

@@ -1,7 +1,31 @@
 const DATA_URL = 'data/indicadores.json';
 
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+const ICON_BY_ID = {
+  'oportunidad-dispensacion': 'ic-clipboard-check',
+  'satisfaccion-usuario': 'ic-smile',
+  'tiempo-atencion': 'ic-timer',
+  'farmacovigilancia-invima': 'ic-shield-alert',
+  'bioseguridad-inyectologia': 'ic-syringe',
+  'temperatura-humedad': 'ic-thermometer',
+  'medicamentos-vencidos': 'ic-calendar-check'
+};
+
 function keepUnitsTogether(text) {
   return String(text || '').replace(/\s+(%|min\b)/g, '\u00A0$1');
+}
+
+function createUseIcon(symbolId) {
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('class', 'ic');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+
+  const use = document.createElementNS(SVG_NS, 'use');
+  use.setAttribute('href', `#${symbolId}`);
+  svg.appendChild(use);
+  return svg;
 }
 
 function buildIndicatorRow(item) {
@@ -9,6 +33,9 @@ function buildIndicatorRow(item) {
 
   const nameSpan = document.createElement('span');
   nameSpan.className = 'rows__name';
+
+  const symbolId = ICON_BY_ID[item.id] || 'ic-badge-check';
+  nameSpan.appendChild(createUseIcon(symbolId));
   nameSpan.appendChild(document.createTextNode(String(item.nombre || '')));
 
   const detailSmall = document.createElement('small');
