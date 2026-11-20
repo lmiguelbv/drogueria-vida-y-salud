@@ -42,17 +42,20 @@
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-/* Hero encuadrado en primera pantalla; secciones interiores con ritmo compacto y uniforme */
+/* Hero y secciones con ritmo compacto y uniforme en todas las pantallas */
 main > section.hero.hero--place {
-  --photo: min(500px, 53svh);
-  height: 100svh;
-  min-height: 100svh;
+  --photo: min(460px, 50svh);
+  --hgap: 32px;
+  --hpadb: 48px;
+  height: auto;
+  min-height: 0;
+  padding-bottom: 48px;
 }
 main > section:not(.hero),
 footer#contacto.closing {
   height: auto;
   min-height: 0;
-  padding-block: 64px;
+  padding-block: 48px;
   scroll-margin-top: var(--nav);
 }
 main > section:not(.hero) > .wrap,
@@ -60,7 +63,7 @@ footer#contacto.closing > .wrap {
   height: auto;
 }
 footer#contacto.closing {
-  padding-bottom: calc(64px + var(--bar));
+  padding-bottom: calc(48px + var(--bar));
 }
 footer#contacto.closing > .wrap {
   gap: var(--s-6);
@@ -248,9 +251,9 @@ footer#contacto.closing > .wrap {
   main > section.hero.hero--place {
     --photo: 56vw;
     height: auto;
-    min-height: 100svh;
+    min-height: 0;
     padding-top: calc(var(--nav) + var(--photo) + var(--hgap));
-    padding-bottom: var(--hpadb);
+    padding-bottom: 40px;
   }
   main > section.hero.hero--place > picture.hero__bg {
     top: var(--nav);
@@ -260,10 +263,10 @@ footer#contacto.closing > .wrap {
   .hero__logo { height: 84px; }
   main > section:not(.hero),
   footer#contacto.closing {
-    padding-block: 48px;
+    padding-block: 40px;
   }
   footer#contacto.closing {
-    padding-bottom: calc(48px + var(--bar));
+    padding-bottom: calc(40px + var(--bar));
   }
   .h-ic__badge { width: 30px; height: 30px; margin-right: 8px; }
   .h-ic__badge > .ic { width: 16px; height: 16px; }
