@@ -23,7 +23,7 @@
 <meta name="twitter:image" content="https://lmiguelbv.github.io/drogueria-vida-y-salud/share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/system.css">
 <link rel="stylesheet" href="assets/ui/cards.css">
 <link rel="stylesheet" href="assets/motion/motion.css">
@@ -34,9 +34,9 @@
   --p-accent: #2c5877; --p-accent-ink: #ffffff; --p-action: #2c5877; --p-action-ink: #ffffff;
   --p-inv-bg: #1d2530; --p-inv-surface: #29313b; --p-inv-ink: #f3f1ec; --p-inv-muted: #9a9d9f;
   --p-inv-accent: #f3f1ec; --p-inv-accent-ink: #1d2530; --p-inv-action: #f3f1ec; --p-inv-action-ink: #1d2530;
-  --font-display: "Figtree", system-ui, sans-serif;
-  --font-text: "Figtree", system-ui, sans-serif;
-  --display-weight: 400;
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-text: "Plus Jakarta Sans", system-ui, sans-serif;
+  --display-weight: 500;
   --display-tracking: -0.025em;
 }
 html { scroll-behavior: smooth; }
@@ -67,23 +67,23 @@ footer#contacto.closing > .wrap {
 }
 #contacto.closing > .wrap > .footer__legal { width: 100%; }
 
-/* Logo completo debajo del título principal */
-.hero__logo-wrap { display: block; }
-.hero__logo { display: block; height: 112px; width: auto; }
+/* Logo completo agrandado y centrado debajo del título principal */
+.hero__logo-wrap { display: flex; justify-content: center; width: 100%; }
+.hero__logo { display: block; height: 152px; width: auto; }
 @media (min-width: 1024px) {
   :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text { row-gap: var(--s-2); }
   :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text > h1 { grid-column: 1 / span 6; grid-row: 1; }
-  :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text > .hero__logo-wrap { grid-column: 1 / span 6; grid-row: 2 / span 2; margin-top: var(--s-2); align-self: start; }
+  :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text > .hero__logo-wrap { grid-column: 1 / span 6; grid-row: 2 / span 2; margin-top: var(--s-2); align-self: start; justify-self: center; }
   :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text > .hero__lead { grid-column: 7 / -1; grid-row: 1 / span 2; }
   :is(.hero--place, :root[data-type="place"] .hero--photo) .hero__text > .btn-row { grid-column: 7 / -1; grid-row: 3; margin-top: var(--s-3); }
 }
 @media (min-width: 1024px) and (max-height: 820px) {
   main > section.hero.hero--place {
-    --photo: clamp(330px, 46svh, 460px);
-    --hgap: 32px;
-    --hpadb: 40px;
+    --photo: clamp(310px, 44svh, 440px);
+    --hgap: 28px;
+    --hpadb: 36px;
   }
-  .hero__logo { height: 92px; }
+  .hero__logo { height: 124px; }
 }
 
 /* Sistema coherente de iconos SVG inline (mantiene alineación exacta de márgenes de página) */
@@ -101,6 +101,12 @@ footer#contacto.closing > .wrap {
   stroke-linejoin: round;
   color: var(--accent);
 }
+.nav__link .ic {
+  width: 15px;
+  height: 15px;
+  margin-right: 0;
+  vertical-align: 0;
+}
 .btn .ic {
   color: currentColor;
   vertical-align: -0.2em;
@@ -108,19 +114,23 @@ footer#contacto.closing > .wrap {
 }
 .h-ic { display: block; }
 .h-ic__badge {
-  display: inline-grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   margin-right: 10px;
-  vertical-align: -0.18em;
+  vertical-align: middle;
+  position: relative;
+  top: -0.04em;
   border-radius: var(--r-sm);
   background: color-mix(in oklab, var(--accent) 12%, transparent);
   color: var(--accent);
 }
 .h-ic__badge > .ic {
-  width: 19px;
-  height: 19px;
+  display: block;
+  width: 18px;
+  height: 18px;
   margin-right: 0;
   vertical-align: 0;
 }
@@ -211,19 +221,20 @@ footer#contacto.closing > .wrap {
   #contacto .btn-row > .btn--secondary { justify-self: start; padding-inline: 0; border-color: transparent; background: none; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--line-strong); }
 }
 @media (min-width: 1024px) and (max-width: 1279px) {
-  .nav__bar { gap: 10px; }
-  .nav__logo { font-size: 16px; gap: 6px; }
-  .nav__logo img { height: 20px; }
+  .nav__bar { gap: 8px; }
+  .nav__logo { font-size: 14px; gap: 5px; letter-spacing: -0.025em; }
+  .nav__logo img { height: 18px; }
   .nav__links { gap: 0; }
-  .nav__link { font-size: 14px; padding: 0 5px; }
-  .nav__link::before, .nav__link[aria-current="page"]::after { left: 5px; right: 5px; }
-  .nav__actions .btn { padding-inline: 10px; font-size: 14px; }
+  .nav__link { font-size: 12.5px; padding: 0 3px; gap: 3px; white-space: nowrap; }
+  .nav__link .ic { width: 12px; height: 12px; }
+  .nav__link::before, .nav__link[aria-current="page"]::after { left: 3px; right: 3px; }
+  .nav__actions .btn { padding-inline: 9px; font-size: 12.5px; white-space: nowrap; }
   .hero--place .btn-row > .btn--secondary { padding-inline: 0; }
   #contacto .btn-row { display: flex; flex-wrap: wrap; row-gap: var(--s-2); }
 }
 @media (max-width: 1023px) {
   .nav__logo { font-size: 18px; }
-  .hero__logo { height: 80px; }
+  .hero__logo { height: 118px; }
   .story-media { aspect-ratio: 4 / 3; }
   .servicios-mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .servicios-shot:first-child { grid-column: auto; aspect-ratio: 4 / 3; }
@@ -246,7 +257,7 @@ footer#contacto.closing > .wrap {
     height: var(--photo);
   }
   main > section.hero.hero--place .hero__text { gap: var(--s-3); }
-  .hero__logo { height: 54px; }
+  .hero__logo { height: 84px; }
   main > section:not(.hero),
   footer#contacto.closing {
     padding-block: 48px;
@@ -314,11 +325,11 @@ footer#contacto.closing > .wrap {
     <a class="skip-link" href="#top">Saltar al contenido</a>
     <a class="nav__logo" href="#top"><img src="assets/logo-mark.png" alt="" width="28" height="28">Droguería Vida y Salud</a>
     <nav class="nav__links" aria-label="Principal">
-      <div class="nav__item"><a class="nav__link" href="#nosotros">Nosotros</a></div>
-      <div class="nav__item"><a class="nav__link" href="#servicios">Servicios</a></div>
-      <div class="nav__item"><a class="nav__link" href="#inyectologia">Inyectología</a></div>
-      <div class="nav__item"><a class="nav__link" href="#calidad">Calidad</a></div>
-      <div class="nav__item"><a class="nav__link" href="#contacto">Contacto</a></div>
+      <div class="nav__item"><a class="nav__link" href="#nosotros"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-shield-cross"></use></svg>Nosotros</a></div>
+      <div class="nav__item"><a class="nav__link" href="#servicios"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-capsule"></use></svg>Servicios</a></div>
+      <div class="nav__item"><a class="nav__link" href="#inyectologia"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-syringe"></use></svg>Inyectología</a></div>
+      <div class="nav__item"><a class="nav__link" href="#calidad"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-badge-check"></use></svg>Calidad</a></div>
+      <div class="nav__item"><a class="nav__link" href="#contacto"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-map-pin"></use></svg>Contacto</a></div>
     </nav>
     <div class="nav__actions">
       <a class="btn btn--primary" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-whatsapp"></use></svg>Escribir por WhatsApp<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
@@ -335,7 +346,7 @@ footer#contacto.closing > .wrap {
         <div class="hero__text">
           <h1 id="hero-h">Droguería Vida y Salud SAS</h1>
           <div class="hero__logo-wrap">
-            <img class="hero__logo" src="assets/logo.png" srcset="assets/logo-160.png 160w, assets/logo-280.png 280w, assets/logo.png 672w" sizes="(max-width: 639px) 69px, (max-width: 1023px) 102px, 142px" alt="Logotipo de Droguería Vida y Salud — Farmacia e Inyectología" width="672" height="529" decoding="async">
+            <img class="hero__logo" src="assets/logo.png" srcset="assets/logo-160.png 160w, assets/logo-280.png 280w, assets/logo.png 672w" sizes="(max-width: 639px) 107px, (max-width: 1023px) 150px, 193px" alt="Logotipo de Droguería Vida y Salud — Farmacia e Inyectología" width="672" height="529" decoding="async">
           </div>
           <p class="hero__lead">Tu salud, nuestra prioridad. Farmacia en Calle 17 Sur, barrio Restrepo, Bogotá D.C. Dispensación responsable de medicamentos, presión arterial, orientación farmacéutica e inyectología con fórmula.</p>
           <div class="btn-row">
