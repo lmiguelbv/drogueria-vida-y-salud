@@ -1,0 +1,56 @@
+{
+  "entidad": "Droguería Vida y Salud SAS",
+  "nota_edicion": "Datos provisionales de referencia para el trabajo de grado. Edite los campos 'meta' y 'resultado' de cada indicador cuando disponga de las mediciones reales del establecimiento.",
+  "actualizado": "2026-11",
+  "indicadores": [
+    {
+      "id": "oportunidad-dispensacion",
+      "nombre": "Oportunidad en la dispensación",
+      "detalle": "Fórmulas completas",
+      "meta": "≥ 95 %",
+      "resultado": "97 %"
+    },
+    {
+      "id": "satisfaccion-usuario",
+      "nombre": "Satisfacción del usuario",
+      "detalle": "Encuesta mensual",
+      "meta": "≥ 90 %",
+      "resultado": "94 %"
+    },
+    {
+      "id": "tiempo-atencion",
+      "nombre": "Tiempo promedio de atención en mostrador",
+      "detalle": "Turno a entrega",
+      "meta": "≤ 10 min",
+      "resultado": "7 min"
+    },
+    {
+      "id": "farmacovigilancia-invima",
+      "nombre": "Sospechas de eventos adversos reportadas a farmacovigilancia (INVIMA)",
+      "detalle": "Reporte al INVIMA",
+      "meta": "100 %",
+      "resultado": "100 %"
+    },
+    {
+      "id": "bioseguridad-inyectologia",
+      "nombre": "Cumplimiento del protocolo de bioseguridad en inyectología",
+      "detalle": "Lista de chequeo",
+      "meta": "100 %",
+      "resultado": "98 %"
+    },
+    {
+      "id": "temperatura-humedad",
+      "nombre": "Registros diarios de temperatura y humedad completos",
+      "detalle": "Control ambiental",
+      "meta": "100 %",
+      "resultado": "100 %"
+    },
+    {
+      "id": "medicamentos-vencidos",
+      "nombre": "Medicamentos vencidos detectados en estantería",
+      "detalle": "Auditoría periódica",
+      "meta": "0",
+      "resultado": "0"
+    }
+  ]
+}
